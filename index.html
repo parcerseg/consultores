@@ -1099,7 +1099,7 @@ window.PARCER_CONFIG = {
       error.textContent = 'Preencha seus dados e autorize o contato para liberar a apresentação.';
       return;
     }
-    const id = `P-${Date.now().toString().slice(-6)}`;
+    const id = `P-${(window.crypto&&crypto.randomUUID)?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2))}`;
     const params = new URLSearchParams(window.location.search);
     const utm = {};
     params.forEach(function (value, key) { if (key.startsWith('utm_')) utm[key] = value; });
