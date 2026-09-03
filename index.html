@@ -1107,12 +1107,11 @@ window.PARCER_CONFIG = {
     const now = new Date().toISOString();
     const lead = {
       id: id, name: name, phone: phone, email: email, answers: state.answers, solution: state.solution,
-      qualification: {}, stage: 'Vídeo liberado', utm: utm,
+      qualification: {}, stage: 'Novo lead', utm: utm,
       source: utm.utm_campaign || utm.utm_source || 'Acesso direto', score: score,
       created_at: now, updated_at: now
     };
     createLeadRecord(lead);
-    notifyByEmail({ lead_id: id, name, email, phone, solution: state.solution === 'gestao' ? 'Gestão' : 'Expansão', profile: labels[state.answers.profile] || state.answers.profile, pain: labels[state.answers.pain] || state.answers.pain }).catch(function () {});
     state.leadId = id;
     state.stage = 'video';
     render();
@@ -1155,7 +1154,7 @@ window.PARCER_CONFIG = {
         advanceTimer = null;
         if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
         else {
-          updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Aguardando WhatsApp', updated_at: new Date().toISOString() });
+          updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Novo lead', updated_at: new Date().toISOString() });
           state.stage = 'complete';
         }
         render();
@@ -1166,7 +1165,7 @@ window.PARCER_CONFIG = {
       if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
       if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
       else {
-        updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Aguardando WhatsApp', updated_at: new Date().toISOString() });
+        updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Novo lead', updated_at: new Date().toISOString() });
         state.stage = 'complete';
       }
       render();
@@ -1196,9 +1195,7 @@ window.PARCER_CONFIG = {
   }
 
   function renderComplete() {
-    const whatsappNumber = config.whatsappNumber || '556131426161';
-    const message = encodeURIComponent(`Olá! Concluí o diagnóstico da Parcer. Meu resultado foi ${state.solution === 'gestao' ? 'Gestão' : 'Expansão'} e meu código é ${state.leadId}. Gostaria de conversar sobre os próximos passos.`);
-    shell.innerHTML = `<section class="complete-view"><div class="complete-icon">✓</div><span class="question-kicker">Diagnóstico concluído</span><h2>Agora nossa conversa já começa com contexto.</h2><p>Seu perfil foi organizado para que o especialista da Parcer entenda rapidamente seu momento e avance direto ao que importa.</p><div class="summary-card"><div><span>Solução recomendada</span><strong>${state.solution === 'gestao' ? 'Gestão Parcer' : 'Expansão Parcer'}</strong></div><div><span>Perfil</span><strong>${esc(labels[state.answers.profile])}</strong></div><div><span>Momento</span><strong>${esc(labels[state.answers.timing])}</strong></div><div><span>Código</span><strong>${esc(state.leadId)}</strong></div></div><a class="whatsapp-action" href="https://wa.me/${encodeURIComponent(whatsappNumber)}?text=${message}" target="_blank" rel="noreferrer">Conversar pelo WhatsApp <span>→</span></a><small>Ao clicar, uma mensagem personalizada será aberta no seu WhatsApp.</small></section>`;
+    shell.innerHTML = `<section class="complete-view"><div class="complete-icon">✓</div><span class="question-kicker">Informações enviadas</span><h2>Pronto! Suas informações foram enviadas para um consultor.</h2><p>Logo, logo um especialista da Parcer entrará em contato com você para apresentar os próximos passos.</p><div class="summary-card"><div><span>Solução recomendada</span><strong>${state.solution === 'gestao' ? 'Gestão Parcer' : 'Expansão Parcer'}</strong></div><div><span>Perfil</span><strong>${esc(labels[state.answers.profile])}</strong></div><div><span>Momento</span><strong>${esc(labels[state.answers.timing])}</strong></div><div><span>Código</span><strong>${esc(state.leadId)}</strong></div></div><small>Você não precisa fazer mais nada agora. Em breve, entraremos em contato.</small></section>`;
   }
 
   document.getElementById('restart').addEventListener('click', function () { state = freshState(); render(); });
