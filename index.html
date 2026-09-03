@@ -282,6 +282,13 @@ button, input, select { font: inherit; }
 
 .complete-view { text-align: center; }
 .complete-icon { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 15px; border-radius: 50%; color: #fff; background: linear-gradient(135deg, #45a77c, #2e7659); box-shadow: 0 15px 30px -15px rgba(46,118,89,.75); font-size: 25px; font-weight: 800; }
+.consultant-message-card { margin-top: 28px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: rgba(244,245,241,.58); text-align: left; }
+.consultant-message-card label { display: block; color: var(--petrol); font-size: 15px; font-weight: 800; }
+.consultant-message-card label span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; font-weight: 500; line-height: 1.5; }
+.consultant-message-card textarea { width: 100%; min-height: 108px; margin-top: 14px; padding: 14px 15px; resize: vertical; border: 1px solid rgba(10,40,90,.18); border-radius: 13px; outline: none; color: var(--deep); background: #fff; font: inherit; font-size: 13px; line-height: 1.55; }
+.consultant-message-card textarea:focus { border-color: var(--sky); box-shadow: 0 0 0 4px rgba(48,121,223,.13); }
+.consultant-message-card .primary-action { margin-top: 12px; }
+.consultant-message-feedback { display: block; min-height: 18px; margin-top: 10px; color: #2e7659; font-size: 11px; font-weight: 700; text-align: center; }
 .summary-card { margin: 24px 0 0; border: 1px solid var(--line); border-radius: 17px; overflow: hidden; text-align: left; }
 .summary-card div { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 16px; border-bottom: 1px solid var(--line); background: rgba(244,245,241,.5); }
 .summary-card div:last-child { border-bottom: 0; }
@@ -780,6 +787,19 @@ window.PARCER_CONFIG = {
     }).then(function (response) { return response.ok ? response.json() : null; }).catch(function () { return null; });
   }
 
+  function notifyAdminLead(leadId) {
+    const cfg = getConfig();
+    if (!cfg) return Promise.resolve(false);
+    return fetch(`${cfg.url}/functions/v1/lead-automation`, {
+      method: 'POST',
+      headers: {
+        apikey: cfg.anonKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ action: 'notify-admin', leadId: leadId })
+    }).then(function (response) { return response.ok; }).catch(function () { return false; });
+  }
+
   // Score comercial calculado a partir das respostas do diagnóstico.
   // Usado tanto ao criar o lead (app.js) quanto ao exibir no CRM (crm.js),
   // para garantir que os dois lugares calculem o mesmo número.
@@ -797,6 +817,7 @@ window.PARCER_CONFIG = {
     insertLead: insertLead,
     updateLead: updateLead,
     fetchLeads: fetchLeads,
+    notifyAdminLead: notifyAdminLead,
     computeScore: computeScore
   };
 })();
@@ -991,8 +1012,9 @@ window.PARCER_CONFIG = {
   function updateLeadRecord(id, patch) {
     saveLeadLocally(Object.assign({ id: id }, patch));
     if (window.ParcerDB && window.ParcerDB.isEnabled()) {
-      window.ParcerDB.updateLead(id, patch).catch(function () {});
+      return window.ParcerDB.updateLead(id, patch).catch(function () { return false; });
     }
+    return Promise.resolve(true);
   }
 
   function notifyByEmail(payload) {
@@ -1154,7 +1176,7 @@ window.PARCER_CONFIG = {
         advanceTimer = null;
         if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
         else {
-          updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Novo lead', updated_at: new Date().toISOString() });
+          finalizeQualification();
           state.stage = 'complete';
         }
         render();
@@ -1165,7 +1187,7 @@ window.PARCER_CONFIG = {
       if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
       if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
       else {
-        updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Novo lead', updated_at: new Date().toISOString() });
+        finalizeQualification();
         state.stage = 'complete';
       }
       render();
@@ -1176,6 +1198,13 @@ window.PARCER_CONFIG = {
       else state.stage = 'video';
       render();
     });
+  }
+
+  function finalizeQualification() {
+    updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Novo lead', updated_at: new Date().toISOString() }).then(function (saved) {
+      if (saved && window.ParcerDB) return window.ParcerDB.notifyAdminLead(state.leadId);
+      return false;
+    }).catch(function () {});
   }
 
   function wireChoices(callback) {
@@ -1195,7 +1224,27 @@ window.PARCER_CONFIG = {
   }
 
   function renderComplete() {
-    shell.innerHTML = `<section class="complete-view"><div class="complete-icon">✓</div><span class="question-kicker">Informações enviadas</span><h2>Pronto! Suas informações foram enviadas para um consultor.</h2><p>Logo, logo um especialista da Parcer entrará em contato com você para apresentar os próximos passos.</p><div class="summary-card"><div><span>Solução recomendada</span><strong>${state.solution === 'gestao' ? 'Gestão Parcer' : 'Expansão Parcer'}</strong></div><div><span>Perfil</span><strong>${esc(labels[state.answers.profile])}</strong></div><div><span>Momento</span><strong>${esc(labels[state.answers.timing])}</strong></div><div><span>Código</span><strong>${esc(state.leadId)}</strong></div></div><small>Você não precisa fazer mais nada agora. Em breve, entraremos em contato.</small></section>`;
+    shell.innerHTML = `<section class="complete-view"><div class="complete-icon">✓</div><span class="question-kicker">Um novo caminho começa agora</span><h2>Você deu o primeiro passo para transformar sua forma de trabalhar.</h2><p>Mais liberdade, crescimento e uma operação mais leve podem começar com uma decisão. Um consultor da Parcer já recebeu suas informações e entrará em contato em breve para construir esse próximo passo com você.</p><div class="consultant-message-card"><label for="consultant-message">Quer deixar uma mensagem para o consultor?<span>Conte uma dúvida, um objetivo ou algo importante sobre o seu momento. Este campo é opcional.</span></label><textarea id="consultant-message" maxlength="800" placeholder="Escreva sua mensagem aqui..."></textarea><button class="primary-action" id="send-consultant-message" type="button">Enviar mensagem ao consultor <span>→</span></button><span class="consultant-message-feedback" id="consultant-message-feedback"></span></div><small>Agora é só aguardar. Em breve, nosso consultor falará com você.</small></section>`;
+    document.getElementById('send-consultant-message').addEventListener('click', async function () {
+      const message = document.getElementById('consultant-message').value.trim();
+      const feedback = document.getElementById('consultant-message-feedback');
+      if (!message) { feedback.textContent = 'Escreva uma mensagem antes de enviar.'; return; }
+      const button = this;
+      button.disabled = true;
+      button.textContent = 'Enviando...';
+      const qualification = Object.assign({}, state.qualification, { consultant_message: message });
+      const saved = await updateLeadRecord(state.leadId, { qualification: qualification, stage: 'Novo lead', updated_at: new Date().toISOString() });
+      if (saved === false) {
+        button.disabled = false;
+        button.innerHTML = 'Tentar enviar novamente <span>→</span>';
+        feedback.textContent = 'Não foi possível enviar agora. Tente novamente.';
+        return;
+      }
+      state.qualification = qualification;
+      button.textContent = 'Mensagem enviada ✓';
+      feedback.textContent = 'Pronto! Sua mensagem já está junto do seu cadastro.';
+      document.getElementById('consultant-message').disabled = true;
+    });
   }
 
   document.getElementById('restart').addEventListener('click', function () { state = freshState(); render(); });
