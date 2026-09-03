@@ -176,7 +176,7 @@ button, input, select { font: inherit; }
 .continue-button:disabled { opacity: .35; cursor: not-allowed; box-shadow: none; }
 
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes swap-in { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes swap-in { from { transform: translateX(10px); } to { transform: translateX(0); } }
 
 .diagnosis-view h2,
 .contact-view h2,
@@ -511,14 +511,15 @@ button, input, select { font: inherit; }
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item p { margin: 0 0 18px; color: var(--muted); font-size: 13.5px; line-height: 1.65; }
 
-/* CTA final */
-.final-cta { text-align: center; background: linear-gradient(150deg, var(--deep), var(--petrol)); border-radius: 26px; margin: 0 max(24px, calc((100vw - 1160px) / 2)) 0; padding: 60px 24px; color: #fff; }
+/* CTA final + rodapé em bloco reto, inspirado na estrutura da Madalozzo */
+.footer-cta-section { padding: 84px 0 0; }
+.final-cta { text-align: center; background: linear-gradient(150deg, var(--petrol), var(--deep)); border-radius: 0; margin: 0; padding: 72px max(24px, calc((100vw - 1160px) / 2)); color: #fff; }
 .final-cta h2 { font-family: 'Sora', sans-serif; font-size: clamp(24px, 3vw, 32px); margin: 0 0 14px; }
 .final-cta p { opacity: .85; font-size: 15px; margin: 0 0 28px; }
 .final-cta a { display: inline-flex; align-items: center; gap: 8px; padding: 14px 30px; border-radius: 999px; background: #fff; color: var(--deep); font-weight: 700; text-decoration: none; }
 
 /* Rodapé */
-.site-footer { background: var(--deep); color: #fff; padding: 60px max(24px, calc((100vw - 1160px) / 2)) 26px; margin-top: 84px; }
+.site-footer { width: 100%; background: var(--deep); color: #fff; padding: 60px max(24px, calc((100vw - 1160px) / 2)) 26px; margin: 0; border: 0; border-radius: 0; }
 .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.12); }
 .footer-brand img { height: 30px; filter: brightness(0) invert(1); margin-bottom: 14px; }
 .footer-brand p { color: rgba(255,255,255,.6); font-size: 13px; line-height: 1.6; max-width: 260px; }
@@ -535,6 +536,12 @@ button, input, select { font: inherit; }
   .about-wrap { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .site-section { padding: 60px 20px; }
+  .site-section.footer-cta-section { padding: 60px 0 0; }
+}
+
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .site-footer { padding-top: 48px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -664,7 +671,7 @@ button, input, select { font: inherit; }
         </div>
       </section>
 
-      <section class="site-section">
+      <section class="site-section footer-cta-section">
         <div class="final-cta">
           <h2>Na Parcer, você não precisa ter estrutura para ser grande.</h2>
           <p>Comece agora o diagnóstico gratuito e descubra o caminho ideal para o seu momento.</p>
@@ -1032,10 +1039,10 @@ window.PARCER_CONFIG = {
   function renderQuiz() {
     const current = questions[state.step];
     shell.innerHTML = questionView(current, state.answers[current.id], `Pergunta ${state.step + 1} de ${questions.length}`, ((state.step + 1) / questions.length) * 100);
-    wireChoices(function (value) {
+    wireChoices(function (value, button) {
       state.answers[current.id] = value;
       if (advanceTimer) clearTimeout(advanceTimer);
-      render();
+      showSelectedChoice(button);
       advanceTimer = setTimeout(function () {
         advanceTimer = null;
         if (state.step < questions.length - 1) state.step += 1;
@@ -1140,10 +1147,10 @@ window.PARCER_CONFIG = {
     const qualQuestions = getQualification(state.solution);
     const current = qualQuestions[state.qualStep];
     shell.innerHTML = questionView(current, state.qualification[current.id], `Qualificação ${state.qualStep + 1} de ${qualQuestions.length}`, ((state.qualStep + 1) / qualQuestions.length) * 100);
-    wireChoices(function (value) {
+    wireChoices(function (value, button) {
       state.qualification[current.id] = value;
       if (advanceTimer) clearTimeout(advanceTimer);
-      render();
+      showSelectedChoice(button);
       advanceTimer = setTimeout(function () {
         advanceTimer = null;
         if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
@@ -1174,8 +1181,18 @@ window.PARCER_CONFIG = {
 
   function wireChoices(callback) {
     shell.querySelectorAll('[data-choice]').forEach(function (button) {
-      button.addEventListener('click', function () { callback(button.dataset.choice); });
+      button.addEventListener('click', function () { callback(button.dataset.choice, button); });
     });
+  }
+
+  function showSelectedChoice(button) {
+    shell.querySelectorAll('[data-choice]').forEach(function (item) {
+      const isSelected = item === button;
+      item.classList.toggle('selected', isSelected);
+      item.setAttribute('aria-checked', String(isSelected));
+    });
+    const continueButton = document.getElementById('continue');
+    if (continueButton) continueButton.disabled = false;
   }
 
   function renderComplete() {
