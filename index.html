@@ -464,11 +464,84 @@ button, input, select { font: inherit; }
   .lead-drawer { padding: 21px 17px; }
 }
 
+/* ===== SEÇÕES INSTITUCIONAIS DA LANDING ===== */
+.site-section { padding: 84px max(24px, calc((100vw - 1160px) / 2)); }
+.site-section.alt { background: #fff; }
+.section-kicker { display: inline-block; color: var(--sky); font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-family: 'Sora', sans-serif; font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; color: var(--deep); line-height: 1.18; margin: 0 0 14px; max-width: 720px; }
+.section-lead { color: var(--petrol); font-size: 16px; line-height: 1.65; max-width: 620px; margin: 0 0 44px; opacity: .88; }
+
+/* Soluções */
+.solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.solution-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 30px 26px; box-shadow: 0 18px 45px -32px rgba(4,19,42,.35); transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.solution-card:hover { transform: translateY(-4px); box-shadow: 0 24px 55px -28px rgba(4,19,42,.4); }
+.solution-card .sc-tag { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: rgba(48,121,223,.12); color: var(--sky); font-family: 'Sora', sans-serif; font-weight: 800; font-size: 13px; margin-bottom: 18px; }
+.solution-card h3 { font-family: 'Sora', sans-serif; font-size: 19px; color: var(--deep); margin: 0 0 9px; }
+.solution-card p { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin: 0 0 18px; }
+.solution-card a { color: var(--petrol); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.solution-card a:hover { text-decoration: underline; }
+
+/* Diferenciais */
+.diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.diff-card { padding: 24px 22px; border-radius: 16px; background: var(--mist); }
+.diff-card b { display: block; color: var(--deep); font-family: 'Sora', sans-serif; font-size: 15.5px; margin-bottom: 8px; }
+.diff-card span { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+
+/* Sobre + stats */
+.about-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+.about-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 28px; }
+.about-stats div strong { display: block; font-family: 'Sora', sans-serif; font-size: 26px; color: var(--deep); }
+.about-stats div span { color: var(--muted); font-size: 12.5px; }
+.about-card { background: linear-gradient(150deg, var(--deep), var(--petrol)); border-radius: 22px; padding: 34px; color: #fff; }
+.about-card p { font-size: 14.5px; line-height: 1.7; opacity: .92; margin: 0; }
+
+/* Depoimentos */
+.testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.testi-card { background: var(--mist); border-radius: 18px; padding: 26px; }
+.testi-card p { font-size: 14.5px; line-height: 1.68; color: var(--deep); margin: 0 0 18px; }
+.testi-card b { display: block; font-size: 13.5px; color: var(--deep); }
+.testi-card span { font-size: 12px; color: var(--muted); }
+
+/* FAQ */
+.faq-list { max-width: 760px; display: grid; gap: 10px; }
+.faq-item { border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; background: #fff; }
+.faq-item summary { cursor: pointer; list-style: none; padding: 16px 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14.5px; color: var(--deep); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 20px; color: var(--sky); transition: transform .2s; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { margin: 0 0 18px; color: var(--muted); font-size: 13.5px; line-height: 1.65; }
+
+/* CTA final */
+.final-cta { text-align: center; background: linear-gradient(150deg, var(--deep), var(--petrol)); border-radius: 26px; margin: 0 max(24px, calc((100vw - 1160px) / 2)) 0; padding: 60px 24px; color: #fff; }
+.final-cta h2 { font-family: 'Sora', sans-serif; font-size: clamp(24px, 3vw, 32px); margin: 0 0 14px; }
+.final-cta p { opacity: .85; font-size: 15px; margin: 0 0 28px; }
+.final-cta a { display: inline-flex; align-items: center; gap: 8px; padding: 14px 30px; border-radius: 999px; background: #fff; color: var(--deep); font-weight: 700; text-decoration: none; }
+
+/* Rodapé */
+.site-footer { background: var(--deep); color: #fff; padding: 60px max(24px, calc((100vw - 1160px) / 2)) 26px; margin-top: 84px; }
+.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.footer-brand img { height: 30px; filter: brightness(0) invert(1); margin-bottom: 14px; }
+.footer-brand p { color: rgba(255,255,255,.6); font-size: 13px; line-height: 1.6; max-width: 260px; }
+.footer-col h4 { font-family: 'Sora', sans-serif; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); margin: 0 0 16px; }
+.footer-col a, .footer-col address { display: block; color: rgba(255,255,255,.82); font-size: 13.5px; text-decoration: none; margin-bottom: 11px; line-height: 1.5; font-style: normal; }
+.footer-col a:hover { color: #fff; text-decoration: underline; }
+.footer-social { display: flex; gap: 12px; margin-top: 6px; }
+.footer-social a { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); display: grid; place-items: center; font-size: 13px; margin: 0; }
+.footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 22px; color: rgba(255,255,255,.5); font-size: 12px; }
+.footer-bottom a { color: rgba(255,255,255,.5); text-decoration: none; }
+
+@media (max-width: 860px) {
+  .solutions-grid, .diff-grid, .testi-grid { grid-template-columns: 1fr; }
+  .about-wrap { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .site-section { padding: 60px 20px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
-    </style>
+</style>
   </head>
   <body>
     <main>
@@ -495,7 +568,143 @@ button, input, select { font: inherit; }
         </div>
         <div class="quiz-shell" id="quiz-shell" aria-live="polite"></div>
       </section>
+
+      <section class="site-section" id="solucoes">
+        <span class="section-kicker">Nossas soluções</span>
+        <h2 class="section-title">Três caminhos, uma só parceira: a Parcer.</h2>
+        <p class="section-lead">Seja qual for o seu momento, a Parcer tem a solução ideal para impulsionar seus resultados e garantir tranquilidade em cada etapa da jornada.</p>
+        <div class="solutions-grid">
+          <div class="solution-card">
+            <span class="sc-tag">01</span>
+            <h3>Parcer Expansão</h3>
+            <p>Para quem está começando no mercado e precisa de estrutura e suporte para vender sem montar uma operação própria.</p>
+            <a href="#inicio">Saiba mais <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="solution-card">
+            <span class="sc-tag">02</span>
+            <h3>Parcer Gestão</h3>
+            <p>Para corretores que já têm carteira e querem terceirizar todo o operacional para focar só nas vendas.</p>
+            <a href="#inicio">Saiba mais <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="solution-card">
+            <span class="sc-tag">03</span>
+            <h3>Parcer Sucessão</h3>
+            <p>Para quem deseja perpetuar sua carteira, preservar seu legado e garantir renda recorrente mesmo reduzindo sua atuação.</p>
+            <a href="https://wa.me/556131426161" target="_blank" rel="noreferrer">Falar com um especialista <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section alt" id="diferenciais">
+        <span class="section-kicker">Por que a Parcer</span>
+        <h2 class="section-title">Nossos diferenciais</h2>
+        <div class="diff-grid">
+          <div class="diff-card"><b>Estrutura completa, sem custo fixo</b><span>Equipe, sistemas, multicálculo e acesso a mais de 65 seguradoras disponíveis desde o primeiro dia.</span></div>
+          <div class="diff-card"><b>Gestão e operação centralizadas</b><span>A Parcer assume toda a retaguarda da operação, do cálculo ao pós-venda.</span></div>
+          <div class="diff-card"><b>Suporte técnico e estratégico</b><span>Especialistas em seguros, tecnologia e performance apoiam a expansão e a fidelização da sua carteira.</span></div>
+          <div class="diff-card"><b>Rede sólida de parceiros</b><span>Corretores e assessores de todo o país crescendo juntos, com o suporte de uma gestora confiável.</span></div>
+          <div class="diff-card"><b>Identidade preservada</b><span>A operação acontece em nome da sua corretora ou assessoria, mantendo sua autonomia e sua marca.</span></div>
+          <div class="diff-card"><b>Presença nacional</b><span>Atendemos parceiros em todo o Brasil, com mais de 15 anos assessorando corretores.</span></div>
+        </div>
+      </section>
+
+      <section class="site-section" id="sobre">
+        <div class="about-wrap">
+          <div>
+            <span class="section-kicker">Sobre a Parcer</span>
+            <h2 class="section-title">Mais do que uma rede de seguros, somos uma parceira estratégica.</h2>
+            <p class="section-lead" style="margin-bottom:0;">A Parcer nasceu para libertar o corretor de seguros da sobrecarga operacional e permitir que ele dedique seu tempo ao que realmente importa: vender, atender seus clientes e crescer.</p>
+            <div class="about-stats">
+              <div><strong>+65</strong><span>Seguradoras / Operadoras</span></div>
+              <div><strong>+15 anos</strong><span>Assessorando corretores</span></div>
+              <div><strong>Nacional</strong><span>Atendemos todo o Brasil</span></div>
+            </div>
+          </div>
+          <div class="about-card">
+            <p>Unimos gestão, tecnologia e inteligência comercial para tornar o mercado de seguros mais simples e acessível — para que cada parceiro opere como uma grande corretora, sem precisar montar essa estrutura sozinho.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section alt" id="depoimentos">
+        <span class="section-kicker">Depoimentos</span>
+        <h2 class="section-title">O que nossos corretores parceiros dizem</h2>
+        <div class="testi-grid">
+          <div class="testi-card">
+            <p>Depois que passou a operar com a Parcer, a corretora ganhou tempo — o time deixou de se preocupar com a parte operacional de auto e ramos elementares e pôde focar em vida e benefícios.</p>
+            <b>Luciano</b><span>Fábrica Forte Corretora</span>
+          </div>
+          <div class="testi-card">
+            <p>O apoio da Parcer facilitou decisões que antes pareciam arriscadas, como ampliar a estrutura e contratar — o suporte trouxe confiança para crescer com mais tranquilidade.</p>
+            <b>Bruno Megale</b><span>Megale Seguros</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section" id="faq">
+        <span class="section-kicker">FAQ</span>
+        <h2 class="section-title">Perguntas frequentes</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Quem é a Parcer?</summary>
+            <p>A Parcer é uma empresa especializada em gestão e operação de corretoras de seguros, oferecendo suporte completo para que corretores e parceiros vendam mais, com menos carga operacional.</p>
+          </details>
+          <details class="faq-item">
+            <summary>A Parcer é uma corretora de seguros?</summary>
+            <p>A Parcer atua como gestora e plataforma de apoio às corretoras, mantendo a identidade do parceiro enquanto assume os processos operacionais, comerciais e estratégicos.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Preciso ter SUSEP para ser parceiro?</summary>
+            <p>Depende da solução. Na Gestão, onde o parceiro atua como corretor responsável, é necessário registro SUSEP. Na Expansão e na Sucessão, é possível atuar mesmo sem SUSEP, já que a operação técnica fica sob responsabilidade da estrutura da Parcer.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Quais serviços a Parcer oferece?</summary>
+            <p>Gestão operacional, acompanhamento de propostas, controle de inadimplência, suporte em sinistros, acesso a múltiplas seguradoras e apoio comercial para expansão de vendas.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="site-section">
+        <div class="final-cta">
+          <h2>Na Parcer, você não precisa ter estrutura para ser grande.</h2>
+          <p>Comece agora o diagnóstico gratuito e descubra o caminho ideal para o seu momento.</p>
+          <a href="#inicio">Iniciar diagnóstico <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4QAAAEYCAYAAAAEdTgqAAA8jElEQVR4nO3dd5gsVZn48e/MFFFAsUDFhCimUswRE+aw6KrrGgDFnBUzgmF/q5gwLigCoqJiDhhWVFzjGhADxlJRMQfUYlEyt2bm98c553Yx3HuZru6Z7qr+fp6nn74zt6enprvq7fOe9wSQJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSWpib9AFIkqS1k+VF+qyfY/C5P+zn/3LjfhmgrsrlzT9cktQVJoSSJPVATPyaN4CluiqX1uj3zQPzjW8tAcsmipLULSaEE5DlxcKkj2EdNc+xZUJjYU0aJ7MsNszGcj3XVbk4jueZJY3Xf5n+x9WV1/SSCcBkNBLAeUJs3eS1m+XF1sAVgF2BPN52BnYCto+3JWAHYANwUfzRc4HzgX8CFfB/8b4Czq6rst7CcaXPud4mifHvnGc2rvtx6VwbwPjev2tXl9b3E1tTKibFc6xh7/WsyPJizoCtSWte0/Q0AZgGjSTkUp038T3YHbghcKN4fx3gqsCVCAnfqJ/7i4RE8a/AmcCvgdOBnwE/B35bV+U/N3Hcxnypo4zv/WdCuE5Soz3Li2sBb5v08ayDDQx6lc8EfkNoOPyqrso/NR/YGHa0aJAZTpYX83VVLmV58WLgLoTGWpsK9BLhPfgt8EQM+KuS5cVCXZWLWV4cDNyD9q//tFsiJAH/YHBN/zbd6qo8c+UPZHmRYeN/LDaXBMbK342B2wN3AG4O7AFss4WnW6IxD3CVUlthNSMRziQkiD8AvgV8Dzh9ZTUxnh+drEA0rvsHAU+lv9f9OKXPmDOBx9ZVefG0d2Y2Pl9fCNyd/r7Pi8B5hDbb3xnE998AvzO+z4Zs0gcwQ9Jwg50IDcdZdW6WF78CvgN8Cfh6XZW/IXxYpF6ozg0pmYSYSC9neXEd4D+55FyeUZxYV+WnU6NnTM/ZV6lxfCtm97r+Z5YXvwa+D3wD+DpQpgSgkcx0ruE/aWnoZXwtF+P3rgDcGbgfcFfgepv40aV4g0vPKRw1TqxcXCZ9nYaJXjne7gQ8PR7HL7K8OIUQ879RV+UvmgliB5PD9Fruyexe921VjO+zaq2l9/nWzO773IzvXyfEeON7D5kQrr/FeJsFzeCQgsYOwE3j7XHA+VlefB34ICEROQs2JoYGmC2bi72XzyG8thcx2jW9GH/+kCwvTmK4CsKsO4/w+tX0O65u6preicE1fWB8zI+yvPgs8LG6Kr/FIJnxul6FNGcpdsjUMWG6K/Bw4D6EIaBNKblKFbyVi72M02WtUrrMoAqZksTrx9uBwIYsL74PfB74LHBqXZVpzmLXKg8XMRvX/TikCuE/Jn0gLRjfLxnff5zlxWeAj9ZVeSqD+J7hSK/O6vOJPa2ak+1nUepRXiK8FtsD94y3l2d5cQLwlroqfwuDoTmTOthpFRuMS1le7A48mvCabs1ow8AXCO/LHYB71lV5sq//qs0TXr9lZu/6bl7TED5XbhJvL8jy4hvAO4EPpbllnlebtiIRJMuLqwH7A48kDA1NUgUwJX7T9Fm+8jNuZczfilBxuTVwKKF6+DngROBrdVVeDJ2pPKS/dRav+2Gl97OLr5Px/ZLxfa94e0GWF98E3gF8sK7Kc8D43lXT9CGi2dBcFQ8uGWh2A54PPCnLi6OA19RVebZVhU2ar6uyzvLiWYSkelw9l+k1PgQ4GauEumybuqbTdZ0Be8fboVlevBk4uq7K89OQZ6/rQfLTSASvSxhueQBwxfiwVHWbZ20rgOO2pfNjAbhuvD0d+FmWF58gdB58j9kZTSNNq8uK77ePt0OzvDgSOMb43k1d+UBRf6Ue1tT7VhOGKLwQ+F6WF/9WV+ViXJDH85WNVYTFLC+uThh2O85ey1Ql3CfLi7vGIamz1iOq0aTGQ+qgWCI07PcAXg98J8uLB9dVuRSv65k+v2Jv+nJcpORaMWn+HvBMQjJYM6gGppX+uqx5fqRVC9PfeAPgYOC7WV58NcuLJ2R5kcPGpFnSZG0pvr8B43tn2cDWNJkjBJmUGO4BfCTLi7dmebGtyclG87HX7ZnAjoRgPM7GUrNK2PxaaiMlMqnhf0Pgo1lenJDlxa4xEZq50SpZXsw1VqvcIcuLlwKnAU8jzLWuCddeRr8/q1Pjcp7BOQJhUZpjgZ9meXFPmLk9fKUu2Fx8f2+WF7vManzvoj5/yKi7UmKYep6eDHwpy4urx+Ays42CRnXwKsATWJs5DSm43zPLizuaiGtMUsM/Xdf7A9/K8uIOcfjzzDQaVlQF7w98m7BS8BW4ZCI4a1WxZuWhjrcdCNtWNKcXSJouK+P7fsxofO8qE0JNs9TztAG4HfDVLC/2nPGkMFUHn0FoPI67OphYJdRaSdd1GgXwhSwv9puVRkOWF1mMYTtneXEc8EnCUMlZTgQ3JwPeV1flb1MSPekDkrRFzfh+beCLsxTfu8yEUF2wFYPG4/9keXGd2KCaqfM3zqFZzPJiF+BJrO2KZ6lKeJ8sL25rlVBrIPUmbw28N8uLp/S50dAYIlpneXFn4BTCHOC0Yuh6J4LNxSG2dBt2E/txmY+/91jnD0qdk+L7VoT4/qQ+x/c+mKkGtTotIySFuwP/neXFFQmbss/SOZx6yJ8G5KxddTBJC1kcclkPlFpK1+8icFSWF4/qY6MhxanYkXUQ8EXChvI1a7tiaEr40h5qafEWuOTqgVu6NTe1bz7PIoOEcdwW4+8+Je5ztnErDkmd0YzvR/c1vveFb0r3LNKN4XvNzYubDYpRpKTwBsAJwL8Ac1lezPV9KFGjOrgz8FQGy88PI20UvepfS2jw7ZvlxS2A09xfaE0s063l9ecY73WdnmcReEeWF7+rq/LLfTnXsryYjxX2+Swv3sqgup+qguOWKntpBefNvUcXAOcA5wMXx69hMGx1O2CbeL8joZK7uVECzd/ZXKJ+VMfE+7TgTJ907bofVepgnKW/Gbr3Pq91fP9tXZVf6Ut87xMTwu7p6rC9dOGnHue2UlJ4X+AFdVW+Jg5l7HtgSUPNngJciXb7DrZ53VOj9dC6Kh+S5UWLp9BlSIsodVHqoBp1O4TU4J8H3hc7IM5MydTohzkZjWTwcsAHCZ1YNeH1GmdVsDnstFlx3AD8Bvg58FPgdOB3wJ+As4FzCQnhhpWdarGquQ1hn9MdgZ0Je8VeHdiTsHfgnoRRGztu4u+pGSSHw5wbaX/CPwMfS51hQ/x8V3T5uh9FzmzNke3y+7wW8f39WV7cHPhb1+N733T1JJ1lnwAqwsU5rVWxjNBAuDJwTeBqXDKRTcOB2gaYlAC+LMuLTxGWJe9tYGlUB3cibN7cpjoIcBGhgTfUrycE8n/N8mIv4Mf27I1N+oA8HXg/g704p1FqFFyRkBRch7BgwOUajxn1up4nJBG7ETavf2CXh4Q3ksEdgU8TtlHYQJhTMw6pyrhyo/oS+CrwZcJ+hr+uq7Le1BNsSYynF8RbRUgsT2s+Jsam3YDrA7ciLP51S0KS2GxfDNMhmP6m99ZVeU5chGfo459iaaTGOcBH6V/lc3PS310x2Fqkz9J5/DNCZ1CX4vu1CTF+reL7sXVV/qvrEkwXE8LuSMH0eXVV/nLSB7NasWd8D+D2wAOAezJISlLAHFYKSFsDb6yr8t49X3QgVQefSAimi6y+Upw+gP5IWJn0Y/HrYXvsU5XwEVYJxya9Nz+qq/L/TfJA2sjy4urAbYB9423X+F/DnJ+XelpCo+Ffs7x4SF2VH+liB0QjGdwJOAm4A+NLBlMiuMDgdf4h8HHgU8BpK1+v2PCaa/z8cuPfAGyiQtiMESunAAAsx9/zp3j7Uvy57YAC2Ae4NyFJ3LHxXJc1bzKtLH1c/LpvCVP6LP9LXZWPmfTBTFLPp3qkv+37HY/v9yfE913if40jvj+gy/G9r/rciJ4qjQbCjYEftXiK9CFyG0Iv7bTPqVgGljbRyLgh8BTCPJqtGS24pJ+9d12VJ/cxsDQaZdsTehqvxnAVwjS09PC6Kg/O8uJzwL1ol1RuAG5KGH4219eK7DBS9SLLi3cDj2S4obzpPfgU8GAGle9pt7yJhONKwKOBZwNXYbTe5DQX7dfAXsCF8Xd2ovEYr9k0TOwzwN0YXzLYvG7PB04E3gF8pfmexEUbUuK3Zq9dIz6l93pT58bVCR2BDwbuyqDqkBakaZ4n6e87qa7Kf5nWkR+N6/4g4E0Md92njtAzgBsxGFrbifN7DC51jkyr1KbI8uIEwr6pbeL7icBD6XZ8vzLwGOAgxhvfb0wYudSZ+N5nVgi7ZzF+EE3lB+VKjcbRPCFB/CnwzCwvjgfeQug9bjMfrukQ4GT6+YGaqoOPI8zdGTaRWwD+CRwR34tXEBLCYQL5HOE92ho4pK7KA7s8lG8KLcf3uDMNJdg4x2wOoK7KvwKHZ3nxHuCVhOQwJSTDNhrSwhPXBh5VV+XRMcGZ+mFm8RpL1+zxjC8ZbC4Scz7wNuCouipPb/zuNLx7eb2GWDYacc1kdGXM/wPwTuCdWV5cC3gQcABwi+ZTccl5SkfH+z53Wi8DdTxXer8w2gzrQ3w/E3h1jGmvYnzx/cAuxfe+MyHUmoofcmmIUwoy83VVfi/Li32AY4FH0S4pTGPy75LlxS3rqvxun6qEjbmD2xEqL8MG30XCa/r2uir/mOXFVnVVfjXLiy8Ad2e45DK91g/L8uLlwK+60imhtdF87xuJ0J+Bx2R5cQrwVgadNMM2GlLF5KAsL95OdxoLKRn8f8AjGE8y2IyN7wZeWVflz2HjUFAIiddUvEabiPkpkV2qq/I3wBuzvHgTcA/gCcADGbxGS8Avgc/FJKkXsVzqms3E978wiO9HNR7eNr4/s2Pxvdfs5de6qqtyKTaYFoCL66o8EHgPocHT5sM/7cX36Ph1n3qU076DBwLXYrg5l6k6eB7whhXzgV4V74etEi4S5n8eHI+rT6+1RlBXZeoFn4vD6Y4B9iOcI232qkubkt8AuGtdlcvTvgBBY9P5+wP/wegjH9Jy9RnwY+BedVUeWFflz7O8yGKHzGK8TW11KZ0bja03svi9z9dV+VDg5oTRIucQYtZxdVVeTHdX1JZ6ZTPx/eGMHt9vCOzThfg+C0wINRGx53cuVgwfB5xKuzH26Rx+QJYX26agNcZDnYhGdXAb4Hm0qw7OAe+KQ7bm66rcEBuRXwC+zvB7QqUq4f5ZXuwOLDl0VE2NhsPWdVV+gDDnZIF2851TQ2O/cR7jWojXwVKWF1cjzOlbOTduWM0hom8GbltX5eezvFiI13Ddxep86hCEkEDHJPondVU+nTCE9PWEFXehG/OtpJmxIr5/mBmJ77PCxpwmJjZo5uqq3EBICi9i+Mn1qafpmoRlz9P3ui5VB/cnLP/cpjp4IfD6mFyuHLr3yhbHlKqE22GVUFu2IQ5RPpKw+mXbzp454O5ZXmwXF3eY1vMtzQE7hrAaX9sVlGGwYMN5wP51VT6jrsrz03D4LiaCm5Kqm7FquFBX5S/rqnxeXZW/i/8/tVVPacaNM77fowPxfSb0oeGsDotBIKur8seEhQeGrVrRePxd432ng0qjOrgVcDDtq4PvravyDEJ1cAk2vt7zhNUPv0P7KuGj4uqBVgl1KbExnz7gn0XYAD113qxWevzVCavbpu9NlcZKhAdyyY3n20jzev9AGCr7vjg8tLfz6WLVcGNiaKNQmm4r4vuzCZ1XvYzvs8QXX9NgKQaWI2jXmEoNiNvF+673LKfq4EOB6zF8dXAeuBh43YrqYJKqGa+g3WTwRcLS8c+1SqjNiZ0QC3VV/hY4gcG5M4z0+NvE+6k619L1leVFDhzO6JXBBcKiKnepq/LbaXuDWaiWpcRwFv5WqetifJ+PC0WNGt9vHe+nKr7PGhNCTVxj6OhPgW8xfGBJQeQGcWx714ceLMVlmA+lXXVwHvhwXZU/o1EdTBpVwk8BP6B9lfBxWV7shlVCbd5yvBbfzmAocxs3Gd8hjVW6vl4MXIn2CWHaaP7XwN3rqjwjJYPjO1RJGq8Y349juP2RV7rpZT9Ea81GnKZFOhc/G++H6SVOCdNVgSuv+F6nxEbgEmET54LhG5jzhCrr4ZeRFM/HIWivon2VcEfgWVYJtTmNYY6nAaczWJVutdJ5dd14PzXDJhsLyVwHeDKDpG5YaQGZ/wP2ravydyaDkqbdJuL7PO3i+57xvhfzo7vKhFDTIiWA34n3w5ybaVjktsBuje910VJcfjlVB4dRE163T9ZV+UMGSd+lHxhWCpsHTgRKhg/kqUr4pCwvroRVQm1e2hv0m/HrNg2Gq8TVNZenqPqfhl4fQog9KbEbRtqzD+DhdVWWJoOSOiTF91Pi123j+0LcmmZa4vvMsQGnaZEaRWcwGPY4TEKUgtAu4zyo9ZQCIrAvYQjFsBWHlNS9YpVBdT7u93U4w6/umqqElweeERvGxhNtSTnCz+5EmLc6FdIegFleXIuwEnDb4bDpGv+PuipPjiv3mQxK6pqfjPCzOwHbj+tA1I4NOE2LlIxUhA2K29op3nexl2k5Vtle0uJnUxL9mboqv8cWqoPNn4m/74PAL2hfJXxqXFSj63M3tbb+FO+HOUfSY7eOt2mRPjufTKgOppV9h5EWkfkacFicN2wyKKmLRonv2zFd8X0mmRBq2tSE/QiHlRLKTvYyNaqD9wVuyfDVwRRYD1vtD6SqXl2VFxI2hG5bJbwi8JT4fG0XDVH/tbmuk60YNBgm2ukQt4Cos7y4HHBA/Pawn6Vp3u3FDK6dZVfYlNRRF4zws9tgQjhxJoSaRqM0+LYa21GsrzQ36sVccl7RaqTq4OfrqjwlDWdb7c/G3/se4He0rxI+M8uLnbFKqM0b5fOmBjbEf086aUqdHvcDrsbg+htGWizqLXVV/jjOG5yaBXMkaUjZCD+7AUdHTJwJoabNPO0CS0pCzhvjsayLRnXwHoS9FIettKW//RUrvr5MqapXV+X5wBtoVyVcAnYFnmCVUFtwhXjfJqGbpgZDOv5HMHznTfr5eeBs4NWxA8XV9SR12c7xvk18v4DRRpBoDEwINS1SEnN5YIcRnuf8eD/pKsIw0rG+eMXXq5GqE1+pq/IrQ1YHNz5HbJS+A/gz7ZaOXgaeneXF5bFKqBXi+bDnZT7w0tK1cA6jzS0eizhcdDHLi12AuxHO/WE7QNJ8w6PrqvwroUPGhFBSJ40hvp/LaENONQYmhJoWKYG4BmEs+bBLuKfHnjXOg1prjaWW9wHuTPu9zF4V74dOxBpVwnOANzH8XnEpgbwK8BirhFphKZ4Tt4pfD3OOpgbDmTERm5vwPLv0mbkPofNq2MVk0rVxPvBWq4OSOi7F91vEr9vE97/WVblhCuL7TDMh1LSYi42jm8Svh20kpW0qzoxfdyWopON80YqvVyOtUvjNuio/17I6uPG54ut/LPA3BnMDVytVCZ+b5cWOWCUUG7dnWMry4srAreO3h/ncSefgb+L9pDsa0jl9b9oNF00J5GfqqvwdYVEnE0JJnTPG+H5GvJ90fJ9pJoSaFmmFvX3a/Gy8rwhDHpvfm1qN6uAdCfMH21YHXx3vWydgjSrh2cCRDFYQXa1UJbw68CirhIrSZ8yDCEPB22zPAPDDsR3RCOLqovPA3oS/Y9jP0PS3vzd2mNhpIqmrUvx7ILAjHY/vs86EUBOXhk3FVSrvFr89TDKRkr9f11V5dgeHHRwa79tUB08D/jvNbRrxOFJV72jC0Nu2VcLnZXmxPVYJZ1p875ezvNgKOCh+e9jzIX1GnRrvJ3Zdx0QQ4FoM5su0GS76d+BLMUa5sqikzmnE94zR4/u3432X2m29Y0KoabAQG0cPIexpN2wvUxpy9f30fOM7tLURq4OLWV7cDrgP7auDr4xDzka+lhtVwr8Bx9C+Sngt4ACrhDMvbaXwDOAGDL89Q1qN8+/Ad+P3Jjm8Mh37XoR5zsPGqXQtfT12XC10rONKkpIU358J3JDR4vv34vccPj9Bo+wbIo2s0cu0DfB8Bhs2DyM9/ivjPLZ1cgjDL+KSEsAfAx+PlYtxBdKl+J4cCTwV2Inh3pNmlfDdwEUdrNhqRFlebBUXCbg58HLa7dWXquBfrqvyn6kTZdzH2sJe8b7tOf0Vh4sqSnPn57K8mPSxrBnjf7+siO+HMXp8/8cUxfeZZUKoSctiYHkJcF0GQWK1UhXqQuCr8XtT3cuU5cUCIfG6JbAvw1cHU8/aq+OcpqyuyrHs0RbnNC7UVfnnLC/eATybsP/bamPFPOE9vC7wiLoq3xmHlEzLHnJaY43Gwu7AicD2DL9qMPHxc8D7x3yIbaVGbduWe7rGv1VX5XKWFzaSlVZo9FxQJzTi+x6E+L4do8X3DzS+1gSZEGpiGoHl7oQ9+Nr0MqVq2Tfqqvx9WvVq3Mc6brFB+ELCsdes/u9Of+/pwEdi7/K4e9WW4/O+AXgioUHfpkr4/Cwv3gvUVgn7L3Z0LDd6jj8K7M7wnTwwOM9/B3xmSrZnSL9/j3g/7PzBOcJeir9c8XyaXQuxYyDFzD6aJyS+nu8dtg7x3erghJkQat3FIY7zMbDcBvgwg4SoTS/RHPCe+O9xDp8cu0Z18KaElReXGO46TNXBw+uqvGic1cGkUSX8Qxz2+RTaVQlvCPx7XZXvtUrYP41hj/N1VdZpuE+WF08BDmewqmibeaTpunhzXZUXrMV5PozUoZHlxdaE/TahXUL4e8KcGc2u9Fl3TaCc5IGssVQ1+hNhnvwFdgx2xxbi+1MJ8f1yjB7fj6qr8vxJx3cFJoRaFzG4zAPEwLKU5cW/A8cR5qm1WRgl/cxfgI/F7019L1NsWB5MCKRtqoNnAO9f4161VCV8LfAYYBvaVQkPzvLig3TgfemjxiqvzTlr4xiak3r8lwnX8gJwP+AFwB3TY2jfWFggNCSPmbLe48sDO8d/t9mA+Y+xw6UTIxm0prYCrjPpg1gHJ01Dp04frXN8vy9wMOOJ7/OE+H70lMX3mWZCqEsY42IHzedZjklg6mG6FvAS4LHx/9uukpl6mY6Oi05M9QdOozpYEFZUbVsdfMNa96o1qoS/jsM+H0e7KuFewIPrqvzQtL8/fbGJzhdYg+FocWuRGxF6//8NuGn8rzT0u+3Kt+m6eNEUXdepg+PyhCHUw0qvf9ondapHMmjd9PkcWAY2AEfEr/v8t66bdY7vNwbuTWiv3CT+1zjj+z+mJL4LE8KZl4Zvxi8X12qCe1xF9LbAAcDDCZuYpiElbZPBeeCvwJFd6WVqVAe3ol118PfAu9bp721WCR9JOOZhV4FdBl6Y5cVHsUGwpuK1PNfsfInfvwpwVcKWLjsyfLWX+PhtgV0IQ92uT1hc5RqNx6T3d5StRlKnw8l1VR4fOyWmqbFwOcJ1AO06zv5vjMei7uvr1l/pOj6prspfuYLk6NYxvu8OXI/ZjO8zzYRwRjUmCC/RaKhnebETIbDswKBXfNiGz1aEYaBXJmzgfBPgVsC1G49pO/Y8Sb1ML62r8qxp/8BJW0NkeXE94GEMVkddrVQd/K+6Ks9dj161RpXw51lefIiQzA9TJVwgvM83Bx5QV+WJ9gaO34qGAlle5MDdgHsROmGuRWgorIW0ufooPcZJuqb/BjwubUkz4nOOS4qB28T7NnER4J/jORxpqqVYcNREj6IHthDf7w3chu7F978Cj52y+C5MCGdOSpwaweUawD7AnQlDvnYnDIvaZrNP0l4KLguMlgwuEs7drwLHpqGYox/empqLCdYLCK/tMIlVqg6eCbxtvauh8fcdTqjstv1QeGGWFx9n+t+nTml2hGR5cTPCqrAPJnTGrJTmhIwi/fzGBQcYz+dIet5F4OFxQaNp7OQZ9W+1AaS+S59XPwP+Jy4kM23XcSdsIr4/iRDfr7SJh09zfE+f+4uE7aj+OKXxfaaZEM6INO68EVzuBzweuAfj711aXnGDQQ/TqOdc+rA5m7DYCYRK59Q2tBrVwWsD+9F+38Ej13tOVV2VizFw/yjLi08Q5oq1qRLeBrhfXZWf9oNgdM3rOc7JfSlhWG96XxYZnDfND/dplBoL88Aj66r84hRXkreO920rhFMbp6QxSZ/Rx6V9cnGF6aFsIr6/BHgU3Y/vB0x5fJ9pJoQzoNEAX8zy4j6E4LJ34yErgwuMtrDMuBamWWmZwbCDA+uqPKMjyUWqDj6PsInrMAlVel8q4K2TmisZf++rCFtltP3gORT4NDaKR9JYoXIxy4snEt6XK8b/rhm9Ar+e0oiBJcI1fcKUNxYuiPdt49u24zoQaQqlqRD/BE6I35v2z+epsiK+Px54NZDH/+5yfH9U2oJqiuP7TJvWHgWNSbz4FrO82CXLi3cBnyEkg0sMEsEFQoLS7G2aNs1k8Jl1VX4y/W0TPq4talQHr0mo4Aw7d3CR8H68pa7Ks4CF9a6Gxtd4rq7K7wInMVhBdLXSB8LeWV7cK81NXIND7b3UWMjyYtt4PR9DSAbTB2zGdF6/Ky0zaNycBdy/rsp3d6CxMOqQ58uP5Sik6ZQ+rz5SV+WZscPWDsBVasT3bbK8OB54GyEZ7EN8f08H4vtMMyHssXTxZXlxR+BUwpCDlAjOEy7WLgSXNDZ+ATikrsojOxRY0ka8z2WwUfdqX/P0N/8DOGrCK6nOxd//yvT1kD+fGgWHrvhaq9RoLOxM6Nh5FOFDd5lujfZI10AGfB3Yu67Kk6b8mk7n63m0Hy4KsOuK55P6ZJ5wbh896QPpmkZ83wn4LHAg3Y/v36Ab8V2YEPZWIxl8KPA/wB4MtjnoUnWmuTXDk+uqfHVXAkujOrgb8GjaVwePqavyTMKcgok0JBtVwm8Cn6d9lfAuWV7sY5VwOGlFtiwvdiAkg/sQ9vjqUo9xc0TC+cB/APvEVWynffnxdN2dA1y44nurkd6jq8Z7F1cSXHq+fZdvNeE8/2Zdld+OCc5Uj+CZFo34viNhFM4+GN+1zkwIe6iRDD4C+CBhIYS0MmdXpEpmBvwRuG9dlcd0JRmMUnXwOYRtONpUB88BjpiSJZrTsb9ixderlY7/xSu+1hY0NyImXM+3JTQWttrsD02HNMw7NRTTiIQPALeuq/JlMU51qeH4D8I1Oax0rVw9y4tt436kXWjoaW3N9eiWru9UHbR9uQor4vsHgDvQ/fh+qxjfN3Qsvs+0LiUIWoXUE5Plxd2B9zCezUTXU9oXMZ2bHyPMGfxjl5LBRnXwSoTVXNtUBzPg+GlZojnORZ2vq/IrWV58BbgLw+0nmaqEd8vy4g51VX59Gv6uDkirzb0SuB/T21hYWTFIvdvzhKGWHyPMhf0WbNwLdSkuoNAV5xL2SbwSww0dTY+7CmGz518w2OdVs2mZcC33QVpZ9A/AiROe3tA1Kb6/iu7H9zfXVXkqdDa+zzQTwh5pJCHXIPTSpAb4tPfUpZ4mCMc8D5wO/EddlR+AQaI7oeNrYz4m5gcBV2D4lUXTsIvXT0l1MEkN21cSEsI2VcJ5QpXwvkzP3zWVUsKc5cWdgEMY7jxaTyk5mlvxve8CHwE+VFflr2FjnKJLHQGxopfm+PwRuBHDDxldJDT0bsQgIdTsSZ/JvyNs+5QqLF2PhXPAuXVVnjvpA+mKRny/C/BCjO+aoGk88dRe2t7g7cAuDFe9WW8pCUw9Tek4fwkcBRxbV+V5Mbgsdym4pN7RLC9y4Mm0rw6+t67K305TFS1VCQnzCL8J3J52VcJ7ZXlx6zjXZGr+vmnSmFeSAUdyyXln42w8jiMxSc/xW+A04MvAl+qq/GF6QOwxXu5wj/E84T34BXAvhn8P0uNvD3wcE8JZt6Guyl9O+iDGLW5E3/Xkds2tiO9H0J34/n3gS/Qvvs88E8KeaPQ0PQq4J4MJyZMOzMuN+/TvNNY8JREXAl8F3g2cWFfl+XCJ/RO7Jg3bfTqDLQGGrQ7WhOpgRljhc22OtJ202fzhwIktfj79jS8BHjDG4+qbdB49Cbhp/N5aVPtHGUWQOgPeRJg79Ie6Ks9rPiCew0sdvZY35cctfy69xneN9315PdTOXJYXW9OfCiGEhKAPf8d6SPH9KcBN4vemNb7/FyG+/34G4vvMMiHsgdjTtBRXqErbAkzLGPTN9U6dCXybsLzyyXVV/iL9R2PseecCTKM6eAXgaQyGSK5Wqg4eU1flz8d/hGOR3pePZ3nxv8CdaFclvF+WFzcDftDh5H8tLcYG48OBPxNes3FW/JeA7YCdab+VQmrI3pswxPu8LC+2it9bqqtyqWNDvbckNXRTr/iw70V6fW+a5cV16qr8VWMTas2mpTiqx6ra7Enx/WFMf3y/F/CSnsf3mWdC2A+pp+mRwG7ABUx+qOgG4GIGizD8mTActCQ0qH5WV+XZ6cFxGOIcHU0EG5q9frsy/JyAlCx9P8uLOxNfk/Ef5shSlfAbhIRwWKlK+OK6Kh8yZRXQqRDnrS0SqqhrdQ6kbSxuSrsh5mn7kRsCH8vy4p7EJch72MBN70FJ2Gz5igy/sExNWPX5/oSqahqGKmmGxPheE2LBWsWAywGfI1QgR43vJ/Y8vs88E8J+2FixIVz803ChXkRITC+oq/KCTT0gJoHz9GQlqkZ1cCfgIIavDsJg4vbbxnx4a23YD5qU+P5rlhc3Bn5ilfDS4uvxjzX8FedkebEfoVq/De16ktMQ57sDL6ur8iVxGFGveo4bC8ucneXF94G7MXyvfnpt98/y4r8wGZRmVmz3rEd8P5XxxPf/rKvypX2M7zIh7IXUU1NX5Z8mfSybE4eBpkC0cbgB/WoQperg44ErM9qiPs05l9NslDkPaXuRQ+uq3M8q4aat8X51C3VVlllePA14J+1XuUsNhBdnefGNuio/09MEP1X0vkhICIe9RlNHyC0Ji8t8s6evk6RVWIf4/pMsL54KHM/o8f0lWV58s8fxfaaZEPZIDCzTtHJdSlQ7tUpoG43q4OUIG9G3HbOfTNt7uRYWCK/TQ7K8eBnwc+dUXdoaD82p4/6ex2d5cUfgcbRvNKT3891ZXtyirsrf9/D9TO/FycBhtOvwSR0hz66r8ht2hEiza53i+7vi1haPoX18nyfEv3dleXHLnsb3mWZC2CMxsHShqtRHqTr4aOBqTPeWH9MizanaCnhhXZWPTnsYaV0txgr+M4DbEfbJa7MyXdprbxfgfVle7AO9W4Z+KXb+nEbYK/V6DP9aZfFnHpjlxV7Aj21YSVojKb4/Hbg1cGPaxfc0n3BX4L1ZXtwVehffZ5qNL2lEjerg9sALGL06OEtSVekRWV7sSWhwG5fWUWPI+QWEFU0voP2Q5TTf5I7Aa+LIgN50jMTXaiGurPfx+O02iVzaf/UV8TmNF5LGrhHfzwcewXji+52Aw/sW32edDS9pdAsx6B4AXJPR9v2ZNamqtDXwAhvHkxH3MM3qqvwxoSc5rSLbRmo0PDfLi4fEynmfGg0pAXwf7ZeKT6/v/bO8uG98/fv0GkmaEivi+zMZT3x/TpYX/9bD+D6zbLRKI2hUB7cDDsbqYBupSvjILC/2wCrhRMQP9qyuyncA72awkMCw5hgsvvK2LC/2jA2SXryncd+4+boqf0DYdgXaNa7SHl9vzvJiB1jzBSYkzahGfD8OeBfjie9vj3uq9ia+zzLfQGk0qTr4MODaWB1sI1UJtwWeY5VwotIH+1MJ++2l+W7DSgsQXAF4f9yAea5HCU+6xo+i/bmaGlXXBt4Qh185r1/SWknx/WnATxk9vl+efsb3mWTDVWopBr+lLC+2AV6I1cFRpCrhY7K8uAZWCSeiMd/kPGA/wn6io843uRXwXz2bb7IYr/8TgTNov8F8Grr1hCwvDqirckPc40uSxmoT8f1CRo/vtwbe2LP4PpNscEntLcSVAR8CXB+rg6NIVcLLEZbjN7mekDgkMotDIkedb5KGJT05y4tHpmFL4zrWSWksLnMhcDiD4Z9tNIfX3qYvr5Gk6dOI798HDmI88f2psUPL2NVhNl6l9payvNiKQXWwjcWe3tpWS5aBx2d5cVWsEk5MY77JscAJhA/+URYhWASOzvLiRj1ahCANv3o38CvaVwlTx8e2wMfjnEsbVpLWxIr4/j6M78KEUGolBtMl4IEM9vUZNggux5/p461NbElVwh2BZ1glnLiUkD8V+DnhfR0l4dmeMN9ke+j+Airx/JyP23W8mNGrhIvAbsBns7zY3aQw6Pp5Ik2pFN+fBPyM0eP75QjxfTvwuu2imf+wkYbVmDu4ABxC+0bgHHAKcA796ZxJm83vSVgsY9ikLlUJn5zlxZuAv7pp92TEoUULdVWek+XFfoQVNTPazZVNvch7AUfVVfnomOy0WeVuaqTe8LoqP5DlxZOBuxD+zlG2orgO8KUsL/atq7LM8mKruio3jPGwOyHG2fk4N0nSGDXi+7kxvn+T0eJ7TYjvb+1LfJ81JoTS8BZiQ/BBwM0ZvgG4SEgAf1JX5e3X4gAnLcuLvYDTCB8sw3y4pITyCsDT6qp8aUy8TQgnoLF/1feyvHgO8BbC+9PmsyM1Gg7M8uIbdVUeG5+7642G1CH0DOA7DDo12vSQp6RwD+DLWV48vK7KL8ZrYHlWOkYa58Vilhe7An9PC2JIGo9GfD9tDPE9JYB9i+8zw4RQGl4aajFqdfA1AHHJ5j4FzYW6Kn+U5cUngQcx/AdMalA/NcuLI4Aqy4s5G4ST0ZhvclSWF3cCHs5oSeEicESWF9+JieZCl6tAjZ72H2V58TLgMNq/PjB4jXYFPpflxbPrqnwzXCJR6qV0LsRz7vLAK4Cr1lX5YEcKSOO3Ir7fEXgE44nv346JZqfj+ywxIZSGkIJblhf7EpZbHrY6mFYi/QXwoTgsakOfkp0sL9J+RC8HHsDww2FTlTAHnlJX5csdfjJxaQGVJwK3BK5Lu1V1U8V4G+ADWV7cCji3Bwl/GkL+auA+wB1pP3QUBvN5FoAjY0Pt2XVV/jkttNSX5Kg5NDTG1gXg0YQOt+sAn4oPdU6StDZSfH8yoV2zJ6PH9w/2KL7PhL7MW5LWSwpqh4zw83PA4XVVXsxgY/veiL2B83VVngacRIgzwyZzqUr4tCwvdmaw75smIC3wU1flOcD+wMW0378qnQ/XBY6LiU2nV6WLr89yPPcfCZxF+1VHk/T5vAg8DPhOlhf711W5lKqSXV6FN8uL+ViZWE6JYJYXDwNOBY4jJINtVyyWtEqN+P5PQoVwXPH9bX2I77Oisx8m0nqL1cGlLC/uDezN8CuLph633wDviwlOb4dSxL/vMNr3NC4CVwaelPZ9G+8RahiN+SbfBp7LePav+vcsL57VhxU1G0NHf0NICucI5/4oHT5zDF7nqwInZHnx2Swvbh8raksxsVroQodJHD2wkIZ/xvd9hywvHg18C/gAcAvC37uB8LdP/d8ldV0jvn+H8cX3h/Ylvs8CE0Jp9VZWB4dt6KXq4OvrqjyfHlYHk1gpmaur8lTgcwyW1R/GPOE1e0aWFzthlXDiGvNN3gx8mMEHfxupwfG6LC/27sP+VY1G1UnAcxhtf6+mVDFfBO4NfD3Li/dmeXGrmFgt1lW5nOVFFhPEqblOUiUwJsvLjUT2+nHO5Q+AdxKGIi8x6GizfSKtozWK76/tS3zvOzN2aRUacwfvRlhavm118A/Au/peHYxSo/SVwH0Zvqc/JZFXBR5fV+UbnEs4FZrzCW9BGNo3ynyTeULF/JbA/3V98ZBGo+qNWV5cFXgeodq11YhP3awWLgD7AY/I8uLTwLHAyXVVXpQeHK+VZWBpvTqeYlxr3hbje7kU//8qhIT2YcDdCHONiH9TOhckTU6K709gPPF9gR7F9z4zIZRWZ9Tq4BLhejsi7uvW69UCYWO1ZL6uyq9leXEycC+GX2gjbfZ9UJYXxwDnO0F9smIlar6uyrPj/lVfY1DNbZv07w4cX1fl/WM1abnj73GqFD4/y4sdCIs1jLLyaFO6ftK1tG+8nZ7lxUeAE4HvNeNLTNTSzy03brR5nTeR+MFgDuXyisfuCewD/AuhM23nxn/XhHNgVisHc2ke6DRVddfJxvOk49d6rzTi+z+yvDgA+F8Gn8PG9x4zIZQuQ6M6eCfgHrSrDi4AfwWOnZHqYJI+QF5FSAjbfqBcE3hsXZVHWiWcvMbQyFOzvDgYeAOj70+4b5YXL6qr8hVdf49jo2oxxo6nZHkBg6RwXPPi0jDSpfh81wMOjbcfZXnxReCLwHfqqvwTm3k9Y0Kymv1C08I5qeJ4qQZdfN/2IOzPune83YRBJRAGsW+e2W6DLNdVuWHSByGt1Ijvp2R58XzgjYwnvh9aV+Urux7f+2qWg7E0rEPjfZu5g/PAm2OvW++rg0mjSvjlLC++BNyV9lXCZ2d5cRxwoVXCyVsxNPKOwINpv9VCajS8PMuLU+qq/ELW8f2rYlK4FM//p2R5cS5h+GhaaGYcwyOblb80NDMD9oq3g4Bzsrz4GWGu3veBnwK/A86sq/KcNsO3srzYDtgF2I0wpOyG8fcVwLW5dNuimQTOajUwSe/71bO8+BqjLTrUZYuEYdSfq6vyZQ4lnC6N+P6m2Bk+jvh+WJYX3+pDfO8jE0JpC+Ik6KUsL25HqHANWx1MDb+zgKNmrDqYNOcS3pX2VcI9gEfVVXmMPYxTYylWmB5HqArtQfv5JulnTsjy4ubAmV1vJMakMI0yeH6WF38GXh//e5R9CjdlnsFrmJLDeWBHwt5it248dgNwVpYXfwWqeDsbOBe4iMYwUEJ1bwfg8sAV421XwtDP7TdzLGnoaKo+znoSuCnbAneY9EFMgb/E+1kbMtsFKb6n+YTXYvT4/p44n/AvXY/vfWNCKF2G2Kg7lHYrZS4SrrO31lVZzVJ1MElVQuALhPlmbTbtTlXC52Z5cTxwsVXCyWtstXB2nG/yFUafb3IV4ATgnsB81+ebNCqFC3FhpF8RVtXcmfHNK1ypmRymYaXLjf/birCly5VH/D3N527OKTQBXJ1Z6xxsSuf++ZM+EG1aI76fleXF/ownvu8GvLuuynvGLWg6Hd/7xBW9pM1oVAdvAdyPdtXBBeAfwFtidXBWe8NS8nZY+nrIn0+bfF8X2M99CadHY77JN4CDGW3/qjS06O7Ay2PnSeff58bm61ldlZ8gzK07hdAg3rgK5xpJCVoWb2kBoJTMLcZbfRm39Lh0vMsrnjttFWGlZ/UWvNkOnWYr4vshjCe+3yPLi8P6Et/7wgtR2oKYeLyIELSGbbSlpdTfXlflnwn7Ds5kQtioEp4MnEq7amvqmXx+lhdbEZJ1G59ToDHf5A3AJxlt/700HPhFWV78S5/2r2q8Tj8jrLj5WgbVvJr1m0/W3PIjNcyzy7g1G/AmftKMaMSt1wGfYHzxfd8+xfeuMyGUNqFRHdwLeADtq4PnAm+a8epgMh8T7JfHr9tWCW8IPDQm136QTI+U9D8W+C3tOlGSVMU6PsuLazY6FDovNoDm66q8uK7KFxD24/sBoaE0h3Njm1IFU9JkLcZ2zGMJi1IZ33vGN0DajEZ1MA3rGiaBSdXB99RV+XtCMjTTCWFqCAMnAd9jtCrhCxtJu5WKKRCvl7m6KitgfwYLi7SpeqXkfxfg/fG9nuvLex3n5szF+TlfAm4HvIQwvDzNKbzUnn4zJCWC84TFbCRNUIzv83VVngUcwGDY+CjxPaeH8b2rTAilFWLSspTlxQ2ABzFYyn21UnXwQuB1McjNasNupbmYGB92mY/ctPRBcmPgwVYJp0tjvsnXGQy1HnW+yd7A6+IS5b15rxvzChfqqrywrsrDCCv5vZ1L7le4nkNJJ2mZwRzFeWBr4HQGe7fOwmsgTa1GfP9fxjefcG/gtX2L711kQihdWloA5VBCo6Tt3MH31VV5BlYHN2oMDfkkYZhcmyphcmhK3sd1fBqL1Gh4DfApxjPf5FlZXvx7H+ebxGsiVQvPqKvy8cCtgHcDF3PJoaR9PNeXCH9bWqBmHvgh8GTg5nVVfhBCVXViRygpSfH9cOC/GU98f3Zf43uXmBBKDY3q4J7AQxlU+1YrPX4D8Fp7tjdpPvYGvpp2C1OkXsmbAfdPS2OP8fg0gtiZkobyPhb4A6PPN1kCjsvy4rp9nG/SqBbOx8TwB3VVHkhIDI8i7BOYVgiFbieHaXXTVPmcJ/xtFwOfJmyAfcu6Ko+pq/L8+HoYQ6UpYHzvL1906ZJSdfCFhA2ZU7VvtdLjPxxXErQ6eGkp4H8E+DGjVQlfZNI9feI5P19X5d+BR3LJrQqGlRYg2Ikw32QbejrfpK7KpRWJ4Y/qqnwasBdwEPCt+NCVyeG0zzdsbm+RVjdNlc8fAf8J3Kyuyn3rqjwxVQriXqMuKiNNkUZ8/xuD+YTG945zY/r1t0y7VeTSnk/T/KHfaXHlv8UsL65OqA5uiP81zPuV3t/XGNA2LW7UvRAbfYcThsa1mSd1MWHO1T3qqvx8fM5JNR6b+7gN8zNp3lTvNOabfDnLixcDrwQuov08kQuBWwKvr6vy6bEq3NfXbgk2jliYi9vWHAEckeXFbYAHAvsSEsXm53hqmM2tuK2X5RW35jDQZJEwXPwzhAWmTln59wJLHUkEU6XTlWGHl16zLrzPxvcVGvH9K1levJSwLoDxvcNMCNdf2tNplJ/X2ki9Uq8DdhzheU6sq/KHE05Qpl2qEn4QeCmw5wjPdUSWFzcDNsSKwiQ6TXZi+Gs7Pba3qyg29q96VZYXdwLuO8LTpdfraVle/LKuyjf1/RprJEpzhH1M67oqTwVOjUn2zYF7AveI/74ilx75s3Lj+00liqtJGpdX/HvlCoNb2p/wDODbwBeB/62r8qfN/8zyIiMkgV0bTbE9o3+mz6r0mu000aNYHeP7JjTi+yuyvNgbuN8ITzdz8X3aGMTWT/rg/Cvw5pY/Pwf8ZcXzaUxij9e2hD3UjozfHqZ3Pa2O91aHMW5ZrBLO1VV5cZYXTyPs9ZhWVhxGmrO5S12Vf5xAVTY1YD8O/JnBUvmr/dkFwgIa0N/zJb1Gj2awMl3b9ym9RlfJ8mK7uiovmGAnwLqJf18NG6to83VV1sB34+3VWV7sAtwEuC1wa+BGwDWBbVndObm5JeSHSSAXCZ9RvyIMBf0OYYuZ0+uqvLD5wJgELhMSwa5V2NI5/S3gLQx33StI8e/b8etpvIbTMZ0I/JF28f37K56rb5rx/VDGE993m6X4Pi0c0iZJUsfEzo80H+9S1bWYcF0NuDZwPUIV/hrxlgM7AzsQVlJeTefwBsKQsHOAs4GzCAtK/JFQAfxVvP9DXZXnb+J4U0Oxi5VASeo1E8J1lob+jPAUi/aWrK1Gw6UtGzxDSBWPUZ5j0hWGEf+G5VkYFjOG2Nc0E6/ZMOLrm4ZsbvH1iefrjoQhjzsAlyMkhtsS3qM0IiUlgRcC5wPnxvvzthTjVlwPS/F4eve5NY7Ypem/lo3vl8343n0mhJIk9Uyjgtgc7pmGaI6cnDUWgGk+9zI9Tf4kqc9MCCVJmiEr5trOrbjflOUV95j0SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZI04/4/6Rt2NshrS6wAAAAASUVORK5CYII=" alt="Parcer Seguros" />
+          <p>A melhor solução para sua corretora de seguros.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/parcer.seguros/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Links úteis</h4>
+          <a href="#inicio">Home</a>
+          <a href="https://parcerseguros.com.br/quem-somos/" target="_blank" rel="noreferrer">Quem Somos</a>
+          <a href="https://portal.parcerseguros.com.br/" target="_blank" rel="noreferrer">Portal do parceiro</a>
+        </div>
+        <div class="footer-col">
+          <h4>Soluções</h4>
+          <a href="#solucoes">Parcer Expansão</a>
+          <a href="#solucoes">Parcer Gestão</a>
+          <a href="#solucoes">Parcer Sucessão</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="mailto:atendimento@parcerseguros.com.br">atendimento@parcerseguros.com.br</a>
+          <a href="https://wa.me/556131426161" target="_blank" rel="noreferrer">(61) 3142-6161</a>
+          <address>SCN QD 1, BL C, Ed. Trade Center — Sobreloja 101/102, Brasília/DF</address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Parcer. Todos os direitos reservados.</span>
+      </div>
+    </footer>
     <script>
 window.PARCER_CONFIG = {
   whatsappNumber: '556131426161',
@@ -513,7 +722,7 @@ window.PARCER_CONFIG = {
   }
 };
 
-    </script>
+</script>
     <script>
 (function () {
   'use strict';
@@ -585,7 +794,7 @@ window.PARCER_CONFIG = {
   };
 })();
 
-    </script>
+</script>
     <script>
 (function () {
   'use strict';
@@ -818,18 +1027,31 @@ window.PARCER_CONFIG = {
     if (state.stage === 'complete') renderComplete();
   }
 
+  let advanceTimer = null;
+
   function renderQuiz() {
     const current = questions[state.step];
     shell.innerHTML = questionView(current, state.answers[current.id], `Pergunta ${state.step + 1} de ${questions.length}`, ((state.step + 1) / questions.length) * 100);
-    wireChoices(function (value) { state.answers[current.id] = value; render(); });
+    wireChoices(function (value) {
+      state.answers[current.id] = value;
+      if (advanceTimer) clearTimeout(advanceTimer);
+      render();
+      advanceTimer = setTimeout(function () {
+        advanceTimer = null;
+        if (state.step < questions.length - 1) state.step += 1;
+        else state.stage = 'diagnosis';
+        render();
+      }, 320);
+    });
     document.getElementById('continue').addEventListener('click', function () {
       if (!state.answers[current.id]) return;
+      if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
       if (state.step < questions.length - 1) state.step += 1;
       else state.stage = 'diagnosis';
       render();
     });
     const back = document.getElementById('back');
-    if (back) back.addEventListener('click', function () { state.step -= 1; render(); });
+    if (back) back.addEventListener('click', function () { if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; } state.step -= 1; render(); });
   }
 
   function renderDiagnosis() {
@@ -918,9 +1140,23 @@ window.PARCER_CONFIG = {
     const qualQuestions = getQualification(state.solution);
     const current = qualQuestions[state.qualStep];
     shell.innerHTML = questionView(current, state.qualification[current.id], `Qualificação ${state.qualStep + 1} de ${qualQuestions.length}`, ((state.qualStep + 1) / qualQuestions.length) * 100);
-    wireChoices(function (value) { state.qualification[current.id] = value; render(); });
+    wireChoices(function (value) {
+      state.qualification[current.id] = value;
+      if (advanceTimer) clearTimeout(advanceTimer);
+      render();
+      advanceTimer = setTimeout(function () {
+        advanceTimer = null;
+        if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
+        else {
+          updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Aguardando WhatsApp', updated_at: new Date().toISOString() });
+          state.stage = 'complete';
+        }
+        render();
+      }, 320);
+    });
     document.getElementById('continue').addEventListener('click', function () {
       if (!state.qualification[current.id]) return;
+      if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
       if (state.qualStep < qualQuestions.length - 1) state.qualStep += 1;
       else {
         updateLeadRecord(state.leadId, { qualification: state.qualification, stage: 'Aguardando WhatsApp', updated_at: new Date().toISOString() });
@@ -929,6 +1165,7 @@ window.PARCER_CONFIG = {
       render();
     });
     document.getElementById('back').addEventListener('click', function () {
+      if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
       if (state.qualStep > 0) state.qualStep -= 1;
       else state.stage = 'video';
       render();
@@ -951,6 +1188,6 @@ window.PARCER_CONFIG = {
   render();
 })();
 
-    </script>
+</script>
   </body>
 </html>
