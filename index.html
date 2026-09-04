@@ -857,9 +857,19 @@ window.PARCER_CONFIG = {
       support: 'A Parcer tem caminhos para quem possui, está se preparando ou não pretende tirar SUSEP.',
       options: [
         { value: 'ativa', title: 'Tenho SUSEP ativa', description: 'Já estou habilitado para atuar como corretor.' },
-        { value: 'formacao', title: 'Estou em formação ou regularização', description: 'Estou tirando ou regularizando minha habilitação.' },
-        { value: 'nao', title: 'Não tenho SUSEP', description: 'Quero entender como posso participar mesmo assim.' },
-        { value: 'nao_aplica', title: 'Isso não se aplica ao meu perfil', description: 'Não pretendo atuar diretamente como corretor.' }
+        { value: 'formacao', title: 'Estou em formação ou regularização', description: 'Enquanto a habilitação não estiver ativa, posso começar indicando.' },
+        { value: 'nao', title: 'Não tenho SUSEP', description: 'Posso começar pela indicação, sem assumir a corretagem.' },
+        { value: 'nao_aplica', title: 'Isso não se aplica ao meu perfil', description: 'Quero gerar oportunidades e deixar a operação com a Parcer.' }
+      ]
+    },
+    {
+      id: 'production_status', kicker: 'Experiência comercial', title: 'Hoje você já vende seguros ou possui produção ativa?',
+      support: 'Mesmo sem SUSEP ativa, uma operação que já possui vendas pode ter perfil para a Gestão Parcer.',
+      options: [
+        { value: 'recorrente', title: 'Sim, vendo seguros todos os meses', description: 'Já tenho uma produção recorrente e quero ganhar estrutura.' },
+        { value: 'eventual', title: 'Sim, já realizei vendas', description: 'Minha produção ainda é pontual, mas já atuo comercialmente.' },
+        { value: 'carteira', title: 'Tenho uma carteira de seguros ativa', description: 'Já possuo clientes ou negócios em andamento.' },
+        { value: 'sem_producao', title: 'Ainda não vendo seguros', description: 'Quero começar agora ou gerar renda por indicação.' }
       ]
     },
     {
@@ -899,7 +909,9 @@ window.PARCER_CONFIG = {
   const labels = {
     corretor: 'corretor de seguros', veiculos: 'profissional do mercado automotivo', bancario: 'consultor bancário ou financeiro',
     autonomo: 'consultor autônomo', empresa: 'empresa com carteira de clientes', ativa: 'SUSEP ativa', formacao: 'SUSEP em formação',
-    nao: 'sem SUSEP', nao_aplica: 'atuação por indicação', backoffice: 'falta de processo e backoffice',
+    nao: 'sem SUSEP', nao_aplica: 'atuação por indicação', recorrente: 'produção recorrente de seguros',
+    eventual: 'vendas de seguros já realizadas', carteira: 'carteira de seguros ativa', sem_producao: 'sem produção atual',
+    backoffice: 'falta de processo e backoffice',
     funcionario: 'custo de equipe operacional', acesso: 'acesso e estrutura operacional', tempo: 'pouco tempo para vender',
     comecar: 'necessidade de começar com orientação', ate_5: '1 a 5 oportunidades/mês', '6_15': '6 a 15 oportunidades/mês',
     '16_30': '16 a 30 oportunidades/mês', mais_30: 'mais de 30 oportunidades/mês', nao_sei: 'volume ainda não estimado',
@@ -921,12 +933,16 @@ window.PARCER_CONFIG = {
   }
 
   function getSolution(answers) {
-    if (answers.intent === 'gestao') return 'gestao';
+    // Gestão exige pelo menos um sinal de operação real:
+    // SUSEP ativa OU produção/vendas de seguros já existentes.
+    const hasSusep = answers.susep === 'ativa';
+    const hasProduction = ['recorrente', 'eventual', 'carteira'].includes(answers.production_status);
+    if (!hasSusep && !hasProduction) return 'expansao';
     if (answers.intent === 'expansao') return 'expansao';
+    if (answers.intent === 'gestao') return 'gestao';
     let gestao = 0;
     let expansao = 0;
-    if (answers.susep === 'ativa' || answers.susep === 'formacao') gestao += 2;
-    if (answers.susep === 'nao' || answers.susep === 'nao_aplica') expansao += 1;
+    gestao += 2;
     if (['backoffice', 'funcionario', 'acesso'].includes(answers.pain)) gestao += 3;
     if (['tempo', 'comecar'].includes(answers.pain)) expansao += 3;
     if (['veiculos', 'bancario', 'autonomo'].includes(answers.profile)) expansao += 1;
@@ -942,6 +958,17 @@ window.PARCER_CONFIG = {
         title: 'Você quer estar à frente da venda. A Parcer fortalece tudo o que acontece por trás.',
         body: `Seu perfil de ${profile}, somado à ${pain}, mostra que você precisa de força operacional sem perder o relacionamento e o fechamento com o cliente.`,
         bullets: ['Você cota, negocia e fecha', 'A Parcer apoia a operação e o backoffice', 'Estrutura para crescer sem inflar sua equipe']
+      };
+    }
+    const wantedToSellWithoutEligibility = answers.intent === 'gestao'
+      && answers.susep !== 'ativa'
+      && !['recorrente', 'eventual', 'carteira'].includes(answers.production_status);
+    if (wantedToSellWithoutEligibility) {
+      return {
+        tag: 'Seu diagnóstico: Expansão Parcer',
+        title: 'Você quer vender seguros, mas seu melhor ponto de partida hoje é a indicação.',
+        body: `Como ${profile}, você ainda não possui SUSEP ativa nem produção em seguros. Por isso, pode ativar sua rede agora sem assumir a cotação e o fechamento, enquanto a Parcer conduz toda a venda.`,
+        bullets: ['Você começa mesmo sem estrutura anterior', 'A Parcer cota, negocia e fecha', 'Seu consultor pode orientar sua evolução profissional']
       };
     }
     return {
